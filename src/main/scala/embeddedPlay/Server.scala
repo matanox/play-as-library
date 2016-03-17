@@ -1,10 +1,11 @@
+package embeddedPlay;
 import java.io.File
 
 import play.api.{Application, Environment, ApplicationLoader}
 import play.api.mvc.{RequestHeader, Result}
 import play.core.{SourceMapper, WebCommands, HandleWebCommandSupport, BuildLink}
 
-object PlayTest extends App {
+object Server {
   
   class Dummy 
 
@@ -24,7 +25,4 @@ object PlayTest extends App {
 
     play.core.server.NettyServer.fromApplication(application)
   }
-
-  startWebServer
-  
 }
