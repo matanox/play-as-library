@@ -4,29 +4,27 @@ import play.api.{Application, Environment, ApplicationLoader}
 import play.api.mvc.{RequestHeader, Result}
 import play.core.{SourceMapper, WebCommands, HandleWebCommandSupport, BuildLink}
 
-object PlayTest {
+object PlayTest extends App {
   
   class Dummy 
-  
-  def main(args:Array[String]):Unit = {
-    def startWebServer = {
-      val environment = new Environment(
-        new File("."),
-        classOf[Dummy].getClassLoader,
-        play.api.Mode.Dev
-      )
 
-      val sourceMapper: Option[SourceMapper] = None
-      
-      val context = play.api.ApplicationLoader.createContext(environment)
-      val application = ApplicationLoader(context).load(context)
+  def startWebServer = {
+    val environment = new Environment(
+      new File("."),
+      classOf[Dummy].getClassLoader,
+      play.api.Mode.Dev
+    )
 
-      play.api.Play.start(application)
+    val sourceMapper: Option[SourceMapper] = None
+    
+    val context = play.api.ApplicationLoader.createContext(environment)
+    val application = ApplicationLoader(context).load(context)
 
-      play.core.server.NettyServer.fromApplication(application)
-    }
+    play.api.Play.start(application)
 
-    startWebServer
-
+    play.core.server.NettyServer.fromApplication(application)
   }
+
+  startWebServer
+  
 }
